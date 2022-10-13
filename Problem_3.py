@@ -33,7 +33,7 @@ def decodeOriginalText(cipherText,key):
 
 if __name__=='__main__':
     Message = "THE BOY HAS THE BALL"
-    origKey = ['V', 'I', 'G']
+    origKey = ['1', '2', '3']
     key=GenerateKey(Message,origKey)
     print('MESSSAGE TO BE CIPHERED: ',Message)
     print('KEY: ',key)
