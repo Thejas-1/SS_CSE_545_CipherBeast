@@ -18,7 +18,7 @@ def GenerateCipher(Message,key):
     cipher=[]
     Message=''.join(list(Message.split(' ')))
     for i in range(len(key)):
-        val=(ord(Message[i])+ord(key[i]))%26
+        val=(ord(Message[i])+ord(key[i]))%26+1
         val+=ord('A')
         cipher.append(chr(val))
     return ''.join(cipher)
@@ -26,14 +26,14 @@ def GenerateCipher(Message,key):
 def decodeOriginalText(cipherText,key):
     origText=[]
     for i in range(len(key)):
-        val=(ord(cipherText[i])-ord(key[i])+26)%26
+        val=(ord(cipherText[i])-ord(key[i])+26)%26-1
         val+=ord('A')
         origText.append(chr(val))
     return "".join(origText)
 
 if __name__=='__main__':
     Message = "THE BOY HAS THE BALL"
-    origKey = ['1', '2', '3']
+    origKey = ['Y', 'X', 'Z']
     key=GenerateKey(Message,origKey)
     print('MESSSAGE TO BE CIPHERED: ',Message)
     print('KEY: ',key)
