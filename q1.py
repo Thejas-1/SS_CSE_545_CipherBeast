@@ -1,7 +1,13 @@
-def caesar_cipher():
-    plainText = input("Enter the character to be encrypted (Should be a capital letter): ")
-    key = input("Enter the key value (It should be between 0 and 25): ")
-    print((ord(plainText)+int(key)))
-    print(chr((ord(plainText)+int(key)-ord('A'))%26+ord('A')))
+def caesar_cipher(plainText,key):
+    if(key<0 or key>25):
+        return "Key should belong to range of 0 to 25"
+    ans = ""
+    for char in plainText:
+        if(ord(char)<65 or ord(char)>90):
+            return "All letters in the plain text should be capital english alphabets."
+        ans = ans+chr((ord(char)+int(key)-ord('A'))%26+ord('A'))
+    return ans
     
-caesar_cipher()
+plainText = "HELLO"
+key = 3
+print(caesar_cipher(plainText,key))
