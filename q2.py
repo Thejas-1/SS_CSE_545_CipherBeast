@@ -18,10 +18,10 @@ def caesar_cipher_attack(encrypted_text):
         plausible_answer = ""
         for char in encrypted_text:
             plausible_answer = plausible_answer+caesar_decipher(char,key)
-        print(plausible_answer)
+        print(plausible_answer + ", key:"+str(key))
         
 def caesar_decipher(character,key):
-    return chr(ord('a')+(ord(character)-ord('a')-key+26)%26)
+    return chr(ord('A')+(ord(character)-ord('A')-key+26)%26)
     
     
 encrypted_text = input("Enter the encrypted text: ")
