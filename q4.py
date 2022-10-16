@@ -3,11 +3,7 @@ def GenerateKey(Message,origKey):
     if len(Message)==len(origKey):
         return ''.join(origKey)
     key=''
-    values=Message.split(' ')
-    cipher=''
     ind=0
-    alphabets={0:'A',1:'B',2:'C',3:'D',4:'E',5:'F',6:'G',7:'H',8:'I',9:'J',10:'K',11:'L',12:'M',13:'N',14:'O',15:'P',16:'Q',17:'R',18:'S'
-               ,19:'T',20:'U',21:'V',22:'W',23:'X',24:'Y',25:'Z'}
     for i in range(len(Message)):
         if Message[i]!=' ':
             key+=origKey[ind%len(origKey)]
@@ -36,32 +32,36 @@ if __name__=='__main__':
     cipherText = "EUCDRHEVNEWYYQCZHLWLNC"
     alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     keysCount = 0
-    for i in range(0,26):
-        keysCount = keysCount+1
-        key=GenerateKey(PlainText,alphabets[i])
-        keyCipher = GenerateCipher(PlainText,key)
-        if keyCipher == cipherText:
-            print("key: "+alphabets[i]+", true")
-        #else:
-        #    print("key: "+alphabets[i]+", false")
-    for i in range(0,26):
-        for j in range(0,26):
+    with open('keys.txt', 'w') as f:
+        for i in range(0,26):
             keysCount = keysCount+1
-            key=GenerateKey(PlainText,alphabets[i]+alphabets[j])
+            key=GenerateKey(PlainText,alphabets[i])
             keyCipher = GenerateCipher(PlainText,key)
             if keyCipher == cipherText:
-                print("key: "+alphabets[i]+alphabets[j]+", true")
+                print("key: "+alphabets[i]+", true")
+            f.write(alphabets[i]+'\n')
             #else:
-            #    print("key: "+alphabets[i]+alphabets[j]+", false")
-    for i in range(0,26):
-        for j in range(0,26):
-            for k in range(0,26):
+            #    print("key: "+alphabets[i]+", false")
+        for i in range(0,26):
+            for j in range(0,26):
                 keysCount = keysCount+1
-                key=GenerateKey(PlainText,alphabets[i]+alphabets[j]+alphabets[k])
+                key=GenerateKey(PlainText,alphabets[i]+alphabets[j])
                 keyCipher = GenerateCipher(PlainText,key)
                 if keyCipher == cipherText:
-                    print("key: "+alphabets[i]+alphabets[j]+alphabets[k]+", true")
+                    print("key: "+alphabets[i]+alphabets[j]+", true")
+                f.write(alphabets[i]+alphabets[j]+'\n')
                 #else:
-                #    print("key: "+alphabets[i]+alphabets[j]+alphabets[k]+", false")
-    print("keysCount: "+str(keysCount))
-            
+                #    print("key: "+alphabets[i]+alphabets[j]+", false")
+        for i in range(0,26):
+            for j in range(0,26):
+                for k in range(0,26):
+                    keysCount = keysCount+1
+                    key=GenerateKey(PlainText,alphabets[i]+alphabets[j]+alphabets[k])
+                    keyCipher = GenerateCipher(PlainText,key)
+                    if keyCipher == cipherText:
+                        print("key: "+alphabets[i]+alphabets[j]+alphabets[k]+", true")
+                    f.write(alphabets[i]+alphabets[j]+alphabets[k]+'\n')
+                    #else:
+                    #    print("key: "+alphabets[i]+alphabets[j]+alphabets[k]+", false")
+        print("keysCount: "+str(keysCount))
+        f.write("keysCount: "+str(keysCount))
