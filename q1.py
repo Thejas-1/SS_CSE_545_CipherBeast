@@ -8,6 +8,6 @@ def caesar_cipher(plainText,key):
         ans = ans+chr((ord(char)+int(key)-ord('A'))%26+ord('A'))
     return ans
     
-plainText = "HELLO"
-key = 3
+plainText = input("Enter the character to be encrypted (Should be a capital letter): ")
+key = int(input(("Enter the key value (It should be between 0 and 25): ")))
 print(caesar_cipher(plainText,key))
