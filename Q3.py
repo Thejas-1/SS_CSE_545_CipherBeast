@@ -39,8 +39,8 @@ def validateKey(key):
 if __name__=='__main__':
     Message = input('Enter your plain text: ')
     origKey = input('Enter your key:')
-    if not validateKey(origKey):
-        print('Key should contain uppercase letters between A to Z')
+    if not validateKey(origKey) or len(origKey)>3:
+        print('Key should contain uppercase letters between A to Z and should be 3 characters long.')
     else:
         asciiStart =101
         key=GenerateKey(Message,origKey)
